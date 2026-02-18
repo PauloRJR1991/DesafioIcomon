@@ -1,0 +1,13 @@
+﻿@model DesafioICOMON.Models.Funcionario
+
+<h2>Excluir Departamento</h2>
+
+<div class="alert alert-danger">
+  Tem certeza que deseja excluir o Funcionario <strong>@Model.Nome</strong>?
+</div>
+
+<form asp-action="Delete">
+  <input type="hidden" asp-for="Id" />
+  <a asp-action="DeleteFunc" asp-route-id="@Model.Id" class="btn btn-danger">Excluir</a>
+  <a asp-action="Index" class="btn btn-secondary">Cancelar</a>
+</form>

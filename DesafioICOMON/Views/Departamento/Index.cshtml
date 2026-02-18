@@ -1,0 +1,36 @@
+﻿@model List<DesafioICOMON.Models.Departamento>
+
+@using System.ComponentModel.DataAnnotations
+@using System.Reflection
+<h2>Departamentos</h2>
+
+<!-- Botão de novo departamento -->
+<a asp-action="Create" class="btn btn-primary">Novo Cargo</a>
+
+<table class="table mt-3">
+  <thead>
+    <tr>
+      <th>ID</th>
+      <th>Nome</th>
+      <th>Código</th>
+      <th>Ativo</th>
+      <th>Ações</th>
+    </tr>
+  </thead>
+  <tbody>
+    @foreach (var dep in Model)
+    {
+      <tr>
+        <td>@dep.Id</td>
+        <td>@dep.Nome</td>
+        <td>@dep.Codigo</td>
+        <td>@(dep.Ativo == true ? "1-Sim" : "0-Não")</td>
+        <td>
+          <a asp-action="Edit" asp-route-id="@dep.Id" class="btn btn-warning">Editar</a>
+          <a asp-action="Delete" asp-route-id="@dep.Id" class="btn btn-danger">Excluir</a>
+        </td>
+      </tr>
+    }
+  </tbody>
+</table>
+

@@ -1,0 +1,26 @@
+﻿@model DesafioICOMON.Models.Cargo
+
+<div class="container mt-4">
+    <h2>Novo Cargo</h2>
+    <form asp-action="Create" method="post" class="mt-3">
+        <div class="mb-3">
+            <label class="form-label">Nome</label>
+            <input asp-for="Nome" class="form-control" />
+            <span asp-validation-for="Nome" class="text-danger"></span>
+        </div>
+
+        <div class="mb-3">
+            <label class="form-label">Nível</label>
+            <select asp-for="Nivel" class="form-control" asp-items="Html.GetEnumSelectList<NivelCargo>()"> </select>
+        </div>
+
+        <div class="form-check mb-3">
+            <input asp-for="Ativo" class="form-check-input" />
+            <label class="form-check-label">Ativo</label>
+            <span asp-validation-for="Ativo" class="text-danger"></span>
+        </div>
+
+        <button type="submit" class="btn btn-primary">Salvar</button>
+        <a asp-action="Index" class="btn btn-secondary">Cancelar</a>
+    </form>
+</div>
