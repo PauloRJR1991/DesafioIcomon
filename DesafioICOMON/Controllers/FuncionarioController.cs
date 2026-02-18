@@ -4,6 +4,8 @@ using DesafioICOMON.Models;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.AspNetCore.Mvc.Rendering;
 using Microsoft.EntityFrameworkCore;
+using ClosedXML.Excel;
+using System.Data;
 
 namespace DesafioICOMON.Controllers
 {
@@ -183,6 +185,54 @@ namespace DesafioICOMON.Controllers
       _context.Database.ExecuteSqlRaw("EXEC ExcluiFuncionario @Id = {0}", id);
       return RedirectToAction("Index");
     }
+
+
+
+    public IActionResult ExportarExcel()
+    {
+
+      var funcionarios = _context.Funcionarios
+     .FromSqlRaw("EXEC ListaFuncionario")
+     .ToList();
+
+      using (var workbook = new XLWorkbook())
+      {
+        var worksheet = workbook.Worksheets.Add("Funcionarios");
+
+        // Cabeçalhos
+        worksheet.Cell(1, 1).Value = "ID";
+        worksheet.Cell(1, 2).Value = "Nome";
+        worksheet.Cell(1, 3).Value = "Email";
+        worksheet.Cell(1, 4).Value = "Departamento";
+        worksheet.Cell(1, 5).Value = "Cargo";
+        worksheet.Cell(1, 6).Value = "Manager";
+        worksheet.Cell(1, 7).Value = "Data Admissão";
+
+        // Dados
+        int row = 2;
+        foreach (var f in funcionarios)
+        {
+          worksheet.Cell(row, 1).Value = f.Id;
+          worksheet.Cell(row, 2).Value = f.Nome;
+          worksheet.Cell(row, 3).Value = f.Email;
+          worksheet.Cell(row, 4).Value = f.Departamento?.Nome;
+          worksheet.Cell(row, 5).Value = f.Cargo?.Nome;
+          worksheet.Cell(row, 6).Value = f.Manager?.Nome;
+          worksheet.Cell(row, 7).Value = f.DataAdmissao.ToString("dd/MM/yyyy");
+          row++;
+        }
+
+        using (var stream = new MemoryStream())
+        {
+          workbook.SaveAs(stream);
+          var content = stream.ToArray();
+          return File(content,
+                      "application/vnd.openxmlformats-officedocument.spreadsheetml.sheet",
+                      "Funcionarios.xlsx");
+        }
+      }
+    }
+
 
     // Método auxiliar para carregar dropdowns
     private void CarregarDropdowns(Funcionario funcionario)
