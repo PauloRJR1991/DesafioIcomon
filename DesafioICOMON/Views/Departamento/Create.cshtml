@@ -1,22 +1,23 @@
 ﻿@model DesafioICOMON.Models.Departamento
 
 <div class="container mt-4">
-    <h2>Novo Departamento</h2>
-    <form asp-action="Create" method="post" class="mt-3">
-        <div class="mb-3">
-            <label class="form-label">Nome</label>
-            <input asp-for="Nome" class="form-control" />
-            <span asp-validation-for="Nome" class="text-danger"></span>
-        </div>
-        <div class="mb-3">
-            <label class="form-label">Código</label>
-            <input asp-for="Codigo" class="form-control" />
-            <span asp-validation-for="Codigo" class="text-danger"></span>
-        </div>
-        <div class="form-check mb-3">
-            <input asp-for="Ativo" class="form-check-input" />
-            <label class="form-check-label">Ativo</label>
-        </div>
-        <button type="submit" class="btn btn-primary">Salvar</button>
-    </form>
+  <h2>Novo Departamento</h2>
+  <form asp-action="Create" method="post" class="mt-3">
+    <div class="mb-3">
+      <label class="form-label">Nome</label>
+      <input asp-for="Nome" class="form-control" />
+      <span asp-validation-for="Nome" class="text-danger"></span>
+    </div>
+    <div class="mb-3">
+      <label class="form-label">Código</label>
+      <input asp-for="Codigo" class="form-control" />
+      <span asp-validation-for="Codigo" class="text-danger"></span>
+    </div>
+    <div class="form-check mb-3">
+      <input asp-for="Ativo" class="form-check-input" />
+      <label class="form-check-label">Ativo</label>
+    </div>
+    <button type="submit" class="btn btn-primary">Salvar</button>
+    <a asp-action="Index" class="btn btn-secondary">Cancelar</a>
+  </form>
 </div>
