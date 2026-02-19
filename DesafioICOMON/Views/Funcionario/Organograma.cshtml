@@ -1,0 +1,10 @@
+﻿@model IEnumerable<DesafioICOMON.Models.Funcionario>
+
+<h2>Organograma</h2>
+
+<ul>
+    @foreach (var root in Model.Where(f => f.ManagerId == null))
+    {
+        @Html.Partial("_FuncionarioNode", root)
+    }
+</ul>

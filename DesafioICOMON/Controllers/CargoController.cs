@@ -134,6 +134,7 @@ namespace DesafioICOMON.Controllers
       _context.Database.ExecuteSqlRaw("EXEC ExcluiCargo @Id = {0}", id);
       return RedirectToAction("Index");
     }
+
   }
 }
 

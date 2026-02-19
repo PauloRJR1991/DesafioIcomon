@@ -1,0 +1,22 @@
+﻿@model DesafioICOMON.Models.Funcionario
+
+<li>
+    @Model.Nome
+    @{
+        // Recupera todos os funcionários da ViewBag
+        var funcionarios = (IEnumerable<DesafioICOMON.Models.Funcionario>)ViewBag.JsonData;
+
+        // Filhos diretos do funcionário atual
+        var filhos = funcionarios.Where(f => f.ManagerId == Model.Id).ToList();
+
+        if (filhos.Any())
+        {
+            <ul>
+                @foreach (var filho in filhos)
+                {
+                    @Html.Partial("_FuncionarioPartial", filho)
+                }
+            </ul>
+        }
+    }
+</li>
