@@ -1,0 +1,9 @@
+CREATE PROCEDURE dbo.ExcluiFuncionario
+( @Id DECIMAL(10,0) = NULL
+)
+AS
+BEGIN
+  DELETE  
+    FROM dbo.FUNCIONARIO
+   WHERE dbo.FUNCIONARIO.Id = @Id
+END

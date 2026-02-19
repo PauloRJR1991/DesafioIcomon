@@ -1,0 +1,9 @@
+CREATE PROCEDURE dbo.ExcluiDepartamento
+( @Id DECIMAL(10,0) = NULL
+)
+AS
+BEGIN
+  DELETE  
+    FROM dbo.DEPARTAMENTO
+   WHERE dbo.DEPARTAMENTO.Id = @Id
+END

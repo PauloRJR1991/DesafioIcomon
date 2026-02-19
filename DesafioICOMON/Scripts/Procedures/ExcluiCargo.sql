@@ -1,0 +1,9 @@
+CREATE PROCEDURE dbo.ExcluiCargo
+( @Id DECIMAL(10,0) = NULL
+)
+AS
+BEGIN
+  DELETE  
+    FROM dbo.CARGO
+   WHERE dbo.CARGO.Id = @Id
+END
