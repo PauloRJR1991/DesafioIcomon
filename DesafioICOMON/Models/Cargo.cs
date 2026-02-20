@@ -28,6 +28,7 @@ namespace DesafioICOMON.Models
     , [Display(Name = "Coordenacao")] Coordenacao = 5
     , [Display(Name = "Gerencia")] Gerencia = 6
     , [Display(Name = "Diretoria")] Diretoria = 7
-  }
+    , [Display(Name = "CEO")] CEO = 8
+    }
 
 }

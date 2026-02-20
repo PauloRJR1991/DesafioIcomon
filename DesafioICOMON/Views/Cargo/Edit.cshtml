@@ -4,29 +4,32 @@
 @using System.Reflection
 
 @functions {
-  string GetDisplayName(Enum value)
-  {
-    var field = value.GetType().GetField(value.ToString());
-    var attr = field.GetCustomAttribute<DisplayAttribute>();
-    return attr?.Name ?? value.ToString();
-  }
+    string GetDisplayName(Enum value)
+    {
+        var field = value.GetType().GetField(value.ToString());
+        var attr = field.GetCustomAttribute<DisplayAttribute>();
+        return attr?.Name ?? value.ToString();
+    }
 }
 
 
 <div class="container mt-4">
-  <h2>Alterar Cargo</h2>
-  <form asp-action="Edit" />
-  <input type="hidden" asp-for="Id" />
-  <div class="mb-3">
-    <label class="form-label">Nome</label>
-    <input asp-for="Nome" class="form-control" />
-    <span asp-validation-for="Nome" class="text-danger"></span>
-  </div>
+    <h2>Alterar Cargo</h2>
+    <form asp-action="Edit" />
+    <div class="mb-3">
+        <label class="form-label">ID</label>
+        <input asp-for="Id" class="form-control" readonly />
+    </div>
+    <div class="mb-3">
+        <label class="form-label">Nome</label>
+        <input asp-for="Nome" class="form-control" />
+        <span asp-validation-for="Nome" class="text-danger"></span>
+    </div>
 
-  <div class="mb-3">
-    <label class="form-label">Nível</label>
-    <label asp-for="Nivel"></label>
-    <select asp-for="Nivel" asp-items="ViewBag.NivelCargoList" class="form-control"></select>
+    <div class="mb-3">
+        <label class="form-label">Nível</label>
+        <label asp-for="Nivel"></label>
+        <select asp-for="Nivel" asp-items="ViewBag.NivelCargoList" class="form-control"></select>
    @*  <select asp-for="Nivel" class="form-control">
       @foreach (NivelCargo cargo in Enum.GetValues(typeof(NivelCargo)))
       {
@@ -37,17 +40,17 @@
         </option>
       }
     </select> *@
-  </div>
+    </div>
 
-  <div class="form-check mb-3">
-    <input asp-for="Ativo" class="form-check-input" />
-    <label class="form-check-label">Ativo</label>
-    <span asp-validation-for="Ativo" class="text-danger"></span>
-  </div>
+    <div class="form-check mb-3">
+        <input asp-for="Ativo" class="form-check-input" />
+        <label class="form-check-label">Ativo</label>
+        <span asp-validation-for="Ativo" class="text-danger"></span>
+    </div>
 
-  <!-- Botão de salvar -->
-  <button type="submit" class="btn btn-success">Salvar</button>
-  <a asp-action="Index" class="btn btn-secondary">Cancelar</a>
-  <a asp-action="Delete" class="btn btn btn-danger">Excluir</a>
-  </>
+    <!-- Botão de salvar -->
+    <button type="submit" class="btn btn-success">Salvar</button>
+    <a asp-action="Index" class="btn btn-secondary">Cancelar</a>
+    <a asp-action="Delete" class="btn btn btn-danger">Excluir</a>
+    </>
 </div>
